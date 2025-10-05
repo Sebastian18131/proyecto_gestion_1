@@ -9,10 +9,7 @@ export default function MailReader({ selectedMail, onDeselectMail }) {
 
     const senderData = {
         name: selectedMail.sender,
-        // Aquí puedes incluir otros datos del remitente si existen en selectedMail
-        // id: selectedMail.senderId,
-        // email: selectedMail.senderEmail,
-        // phone: selectedMail.senderPhone
+       
     };
 
     return (
