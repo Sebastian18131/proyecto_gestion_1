@@ -1,13 +1,15 @@
+// Inbox.jsx
 import {
     BarsArrowUpIcon,
     FunnelIcon,
     MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import InboxMailCard from "@/components/InboxMailCard/InboxMailCard";
-
-export default function Inbox() {
+//Inicio
+export default function Inbox({ mails, onSelectMail }) { 
     return (
-        <div className="w-full md:w-1/3 bg-white flex flex-col p-3 rounded-lg h-[calc(90vh-70px)] md:h-auto ml-1 justify-between items-center  ">
+        
+        <div className="w-full bg-white flex flex-col p-3 rounded-lg h-full justify-between items-center ml-1 overflow-x-hidden">
 
             <div className="w-full flex flex-col">
                 <h2 className="font-bold text-2xl mb-2 text-center">
@@ -53,16 +55,30 @@ export default function Inbox() {
 
             <div
                 id="mail-card-scrollarea"
-                className="p-2 bg-gray-100 flex-1 overflow-y-auto rounded-md w-full"
+                className="p-2 bg-gray-100 flex-1 overflow-y-auto overflow-x-auto rounded-md w-full min-w-0" 
             >
-                <InboxMailCard />
-                <InboxMailCard />
-                <InboxMailCard />
-                <InboxMailCard />
-                <InboxMailCard />
+                {(mails || []).map(mail => (
+                    <InboxMailCard 
+                        key={mail.id} 
+                        mail={mail} 
+                        onSelect={() => onSelectMail(mail.id)} 
+                    />
+                ))}
+                {(mails || []).map(mail => (
+                    <InboxMailCard 
+                        key={mail.id} 
+                        mail={mail} 
+                        onSelect={() => onSelectMail(mail.id)} 
+                    />
+                ))}
+                {(mails || []).map(mail => (
+                    <InboxMailCard 
+                        key={mail.id} 
+                        mail={mail} 
+                        onSelect={() => onSelectMail(mail.id)} 
+                    />
+                ))}
             </div>
         </div>
     );
 }
-
-

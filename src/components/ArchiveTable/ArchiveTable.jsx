@@ -1,4 +1,5 @@
 export default function ArchiveTable() {
+    //NUestara tabla de archivos
     return (
         <div className="w-full max-w-full overflow-x-hidden">
             <div className="hidden md:block overflow-x-auto">

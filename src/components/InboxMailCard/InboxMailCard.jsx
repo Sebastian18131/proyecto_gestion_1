@@ -1,10 +1,25 @@
+
 import { DocumentTextIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 
-export default function InboxMailCard() {
-    return (
-        <div className="w-full p-4 border border-senaWashedBlue bg-white rounded-lg flex items-center gap-3 mb-3 overflow-hidden cursor-pointer">
+export default function InboxMailCard({ mail, onSelect }) {
+    
+    if (!mail) return null; 
 
-            <div id="selector" className="h-20 w-1 rounded-xl bg-senaWashedBlue shrink-0"></div>
+
+    return (
+        
+        <div 
+            onClick={onSelect} 
+            className="w-full p-4 border border-senaWashedBlue bg-white rounded-lg flex items-center gap-3 mb-3 overflow-hidden cursor-pointer"
+            
+        >
+
+            
+            <div 
+                id="selector" 
+                className="h-20 w-1 rounded-xl bg-senaWashedBlue shrink-0"
+               
+            ></div>
 
 
             <div className="flex-1 min-w-0">
@@ -18,21 +33,27 @@ export default function InboxMailCard() {
                             id="mail-card-type"
                             className="bg-gray-200 py-1 px-2 rounded-md text-sm shrink-0"
                         >
-                            Queja
+                          
+                            {mail.type || 'N/A'} 
                         </div>
                         <div
                             id="mail-card-serial"
                             className="text-sm truncate max-w-[80px] sm:max-w-[120px]"
                         >
-                            10010025
+                           
+                            {mail.id || 'N/A'}
                         </div>
                         <div id="mail-card-date" className="text-sm shrink-0">
-                            08/09/2025
+                           
+                            {mail.receivedDate || 'N/A'}
                         </div>
                     </div>
                     <div className="text-right text-sm shrink-0">
                         <div>Límite</div>
-                        <div>08/22/2025</div>
+                        <div>
+                           
+                            {mail.limitDate || '08/22/2025'}
+                        </div>
                     </div>
                 </div>
 
@@ -42,14 +63,15 @@ export default function InboxMailCard() {
                         id="mail-card-subject"
                         className="font-semibold truncate"
                     >
-                        Queja generalizada
+                    
+                        {mail.subject || 'Sin Asunto'}
                     </h3>
                     <p
                         id="mail-card-description"
                         className="text-gray-600 text-sm overflow-hidden text-ellipsis line-clamp-2"
                     >
-                        Instructor de la ficha 9122221043 lleva 4 semanas sin
-                        asistir a clases
+                  
+                        {mail.fullContent || 'Sin descripción disponible.'}
                     </p>
                 </div>
 
@@ -64,10 +86,12 @@ export default function InboxMailCard() {
                     >
                         <UserCircleIcon className="w-5 shrink-0" />
                         <div className="truncate text-sm max-w-[120px] sm:max-w-[200px]">
-                            Antonio Antoniez
+                        
+                            {mail.sender || 'Remitente Desconocido'}
                         </div>
                     </div>
-                    <DocumentTextIcon className="w-5 shrink-0" />
+                   
+                    {mail.hasAttachment && <DocumentTextIcon className="w-5 shrink-0" />}
                 </div>
             </div>
         </div>
